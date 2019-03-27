@@ -1,2 +1,2 @@
-# redux_example
+# Create a Redux example
 A simple implementation for Redux
