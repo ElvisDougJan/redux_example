@@ -1,3 +1,4 @@
+// Função reducer que modifica o estado
 function todos(state = [], action) {
   if (action.type === 'ADD_TODO') {
     return state.concat([action.todo])
@@ -13,6 +14,7 @@ function createState() {
 
   const getState = () => state
 
+  // Função de monitoramento que é acionada depois da alteração do estado
   const subscribe = (listener) => {
     listeners.push(listener)
     return () => {
@@ -20,20 +22,36 @@ function createState() {
     }
   }
 
+  // Função chamada com uma action que dispara a modificação
+  const dispatch = (action) => {
+    state = todos(state, action)
+    listeners.forEach(listener => listener())
+  }
+
   return {
     getState,
-    subscribe
+    subscribe,
+    dispatch
   }
 }
 
-const store = createState()
+// App Code
+function todos (state = [], action) {
+  if (action.type === 'ADD_TODO') {
+    return state.concat([action.todo])
+  }
 
-store.subscribe(() => {
-  console.log('O novo state é ', store.getState())
-})
+  return state
+}
 
-const unsubscribe = store.subscribe(() => {
-  console.log('O state foi modificado!')
-})
+// const store = createState()
 
-unsubscribe()
+// store.subscribe(() => {
+//   console.log('O novo state é ', store.getState())
+// })
+
+// const unsubscribe = store.subscribe(() => {
+//   console.log('O state foi modificado!')
+// })
+
+// unsubscribe()
