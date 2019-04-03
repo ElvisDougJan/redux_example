@@ -1,4 +1,4 @@
-function createState() {
+function createStore() {
   let state
   let listeners = []
 
@@ -35,15 +35,37 @@ function todos(state = [], action) {
   return state
 }
 
+const store = createStore(todos)
 
-// const store = createState()
+store.subscribe(() => console.log('O novo state é', store.getState()))
 
-// store.subscribe(() => {
-//   console.log('O novo state é ', store.getState())
-// })
+// 1º dispacth exemplo
+store.dispatch({
+  type: 'ADD_TODO',
+  todo: {
+    id: 0,
+    name: 'Learn Redux',
+    complete: false
+  }
+})
 
-// const unsubscribe = store.subscribe(() => {
-//   console.log('O state foi modificado!')
-// })
+// 2º dispacth exemplo
+store.dispatch({
+  type: 'ADD_TODO',
+  todo: {
+    id: 1,
+    name: 'Read book',
+    complete: false
+  }
+})
 
+// 3º dispacth exemplo
+store.dispatch({
+  type: 'ADD_TODO',
+  todo: {
+    id: 2,
+    name: 'Play game',
+    complete: true
+  }
+})
 // unsubscribe()
