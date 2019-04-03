@@ -1,13 +1,3 @@
-// Função reducer que modifica o estado
-function todos(state = [], action) {
-  if (action.type === 'ADD_TODO') {
-    return state.concat([action.todo])
-  }
-
-  return state
-}
-
-
 function createState() {
   let state
   let listeners = []
@@ -36,13 +26,15 @@ function createState() {
 }
 
 // App Code
-function todos (state = [], action) {
+// Função reducer que modifica o estado
+function todos(state = [], action) {
   if (action.type === 'ADD_TODO') {
     return state.concat([action.todo])
   }
 
   return state
 }
+
 
 // const store = createState()
 
